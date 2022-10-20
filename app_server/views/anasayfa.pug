@@ -1,68 +1,25 @@
 extends layout
+include fonksiyonlar/yildiz
 block content
   #banner.page-header
     .row 
       .col-lg-6
         h1 
-          | MekanBul 
-          small &nbsp; Civardaki mekanları keşfet!
-    .row 
+          | #{sayfaBaslik.siteAd} 
+          small &nbsp; #{sayfaBaslik.slogan}
+  .row 
+    each mekan in mekanlar
       .row.list-group 
       .col-xs-12.col-sm-12 
         .col-xs-12.list-group-item
           h4 
-            a(href='/mekan') Antre Gurme Kitchen
+            a(href='/mekan')=mekan.ad
             small &nbsp;
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-          span.badge.pull-right.badge-default 40m
-          p.address Isparta Merkez  
+            +puanOlustur(mekan.puan)
+          span.badge.pull-right.badge-default= mekan.mesafe
+          p.address= mekan.adres  
           p   
-            span.label.label-danger Restorant
-            | &nbsp;
-            span.label.label-warning Açık
-            
-
-
-    .row 
-      .row.list-group 
-      .col-xs-12.col-sm-12 
-        .col-xs-12.list-group-item
-          h4 
-            a(href='/mekan') Brewmood Cafe
-            small &nbsp;
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star-empty
-          span.badge.pull-right.badge-default 140m
-          p.address Isparta Merkez 
-          p   
-            span.label.label-danger Kafe
-            | &nbsp;
-            span.label.label-primary Kapalı
-
-
-    .row 
-      .row.list-group 
-      .col-xs-12.col-sm-12 
-        .col-xs-12.list-group-item
-          h4 
-            a(href='/mekan') HpllyStone Gece Kulubü
-            small &nbsp;
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-            span.glyphicon.glyphicon-star
-          span.badge.pull-right.badge-default 400m
-          p.address Isparta Merkez  
-          p   
-            span.label.label-danger Gece Kulübü
-            | &nbsp;
-            span.label.label-warning Açık
+            each imkan in mekan.imkanlar
+             span.label.label-warning= imkan 
+             |&nbsp;
             
