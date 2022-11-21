@@ -7,6 +7,6 @@
 
 ![]( https://github.com/baharbubbles/mekanbul/blob/odev5/images/mekan_getir.png)
 
-[Bir Mekana Ait Belirli Yorumu Getir](https://mekanbul.baharbubbles.repl.co/api/mekanlar/637b7be921b289af4f136eca/Yorumlar/6379308ee584b18463e5ae82)
+[Bir Mekana Ait Belirli Yorumu Getir](https://mekanbul.baharbubbles.repl.co/api/mekanlar/637b7be921b289af4f136eca/yorumlar/637b7c01bafe47a2458840bd)
 
 ![]( https://github.com/baharbubbles/mekanbul/blob/odev5/images/yorum_getir.png)
