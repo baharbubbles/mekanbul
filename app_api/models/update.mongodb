@@ -1,0 +1,14 @@
+const database = 'mekanbul';
+use(database);
+db.mekanlar.updateOne({"ad":"Antre Gurme Kitchen"},
+  {$push: {"yorumlar": 
+    {
+      "_id": ObjectId(),
+      "yorumYapan": "Ahmet Işık",
+      "puan": 5,
+      "yorumMetni": "Yemekler güzel, servis hızlı",
+      "tarih": new Date()
+    }
+  }
+}
+)

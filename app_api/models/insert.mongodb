@@ -1,0 +1,31 @@
+const database = 'mekanbul';
+use(database);
+db.mekanlar.insertOne(
+{
+  "ad": "Antre Gurme Kitchen",
+  "adres": "Isparta Merkez",
+  "puan": 5,
+  "imkanlar": [
+    "Restoran",
+    "Kahve",
+    "Tatlı"
+  ],
+  "koordinat": [
+    37.83226584629666,
+    30.524732239878013
+  ],
+  "saatler": [
+    {
+      "gunler": "Pazartesi-Cuma",
+      "acilis": "9:00",
+      "kapanis": "23:00",
+      "kapali": false
+    },
+    {
+      "gunler": "Cumartesi-Pazar",
+      "acilis": "08:00",
+      "kapanis": "00:00",
+      "kapali": false
+    }
+  ]
+});
