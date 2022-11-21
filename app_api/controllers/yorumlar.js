@@ -9,6 +9,7 @@ const yorumEkle = function(req,res){
 };
 const yorumGetir = function(req,res){
     if(req.params && req.params.mekanid && req.params.yorumid){
+        console.log(req.params)
         Mekan.findById(req.params.mekanid)
         .select("ad yorumlar")
         .exec(function(hata,mekan){
@@ -34,7 +35,7 @@ const yorumGetir = function(req,res){
                         },
                         yorum:yorum,
                     };
-                    cevapOlustur(req,200,cevap);
+                    cevapOlustur(res,200,cevap);
                 }
             }else{
                 cevapOlustur(res,404,{hata :"hiç yorum yok"});
