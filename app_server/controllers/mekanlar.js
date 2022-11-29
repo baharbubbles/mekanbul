@@ -11,8 +11,8 @@ const mekanBilgisi = function (req, res) {
         "puan": "5",
         "imkanlar": ["Restoran"],
         "koordinatlar": {
-          "enlem": "37.7812653",
-          "boylam": "30.5653227"
+          "enlem": "37.7",
+          "boylam": "30.5"
         },
         "saatler": [
           {
