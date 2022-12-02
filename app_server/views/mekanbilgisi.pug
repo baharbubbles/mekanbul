@@ -4,14 +4,14 @@ include fonksiyonlar/tarihformat
 block content 
     .row.page-header 
         .col-lg-12 
-            h1= mekanBaslik
+            h1= #{mekanBaslik}
     .row 
         .col-xs-12.col-md-12 
             .row
                 .col-xs-12.col-sm-6
                     p.rating 
                        +puanOlustur(mekanDetay.puan)
-                    p=mekanDetay.adres
+                    p=#{mekanDetay.adres}
                     .panel.panel-primary 
                         .panel-heading 
                             h2.panel-title Açılış Saatleri 
@@ -28,7 +28,7 @@ block content
                                 h2.panel-title Neler Var?
                             .panel-body 
                                  each imkan in mekanDetay.imkanlar
-                                   span.label.label-warning Pizza
+                                   span.label.label-warning #{imkan}
                                    | &nbsp;
                 .col-xs-12.col-sm-6             
                     .panel.panel-primary 

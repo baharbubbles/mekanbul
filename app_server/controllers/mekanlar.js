@@ -1,6 +1,7 @@
 const axios = require("axios");
 var apiSecenekleri = {
-  sunucu:"http://localhost:3000",
+  //sunucu: http://localhost:3000
+  sunucu:"http://mekanbul.baharbubbles.repl.co",
   apiYolu:"/api/mekanlar/",
 };
 var mesafeyiFormatla = function(mesafe){
@@ -14,6 +15,8 @@ var mesafeyiFormatla = function(mesafe){
   }
   return yeniMesafe+birim;
 };
+var express = require('express');
+var router = express.Router();
 var anaSayfaOlustur = function(res,mekanListesi){
   var mesaj;
   //gelen mekanListesi eğer dizi tipinde değilse hata ver
@@ -36,18 +39,24 @@ var anaSayfaOlustur = function(res,mekanListesi){
     mesaj: mesaj,
   });
 };
-var express = require('express');
-var router = express.Router();
-const mekanBilgisi = function (req, res) {
-  axios
-    .get(apiSecenekleri.sunucu + apiSecenekleri.apiYolu + req.params.mekanid)
-    .then(function(response){
-      detaySayfasiOlustur(res, response.data);
-    })
-    .catch(function(hata){
-      hataGoster(res,hata);
-    });
+const anaSayfa = function (req, res) {
+  axios.get(apiSecenekleri.sunucu + apiSecenekleri.apiYolu,{
+    params: {
+      enlem: req.query.enlem,
+      boylam: req.query.boylam,
+    },
+  }).then(function(response){
+    var i,mekanlar;
+    mekanlar = response.data;
+    for(i = 0; i < mekanlar.length; i++){
+      mekanlar[i].mesafe = mesafeyiFormatla(mekanlar[i].mesafe);
+    }
+    anaSayfaOlustur(res,mekanlar);
+  }).catch(function(hata){
+    anaSayfaOlustur(res,hata);
+  });
 };
+
 var detaySayfasiOlustur = function(res,mekanDetaylari){
   mekanDetaylari.koordinat= {
     "enlem":mekanDetaylari.koordinat[0],
@@ -70,23 +79,17 @@ var hataGoster = function(res,hata){
     "mesaj":mesaj
   });
 };
-const anaSayfa = function (req, res) {
-  axios.get(apiSecenekleri.sunucu + apiSecenekleri.apiYolu,{
-    params: {
-      enlem: req.query.enlem,
-      boylam: req.query.boylam,
-    },
-  }).then(function(response){
-    var i,mekanlar;
-    mekanlar = response.data;
-    for(i = 0; i < mekanlar.length; i++){
-      mekanlar[i].mesafe = mesafeyiFormatla(mekanlar[i].mesafe);
-    }
-    anaSayfaOlustur(res,mekanlar);
-  }).catch(function(hata){
-    anaSayfaOlustur(res,hata);
-  });
+const mekanBilgisi = function (req, res) {
+  axios
+    .get(apiSecenekleri.sunucu + apiSecenekleri.apiYolu + req.params.mekanid)
+    .then(function(response){
+      detaySayfasiOlustur(res, response.data);
+    })
+    .catch(function(hata){
+      hataGoster(res,hata);
+    });
 };
+
 const yorumEkle = function (req, res, next) {
   res.render('yorumekle', { title: 'Yorum ekle' });
 }
