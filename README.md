@@ -1,6 +1,4 @@
-[Replit Adresi]()
-
-![](https://mekanbul.baharbubbles.repl.co/?enlem=37.7&boylam=30.5)
+[Replit Adresi](https://mekanbul.baharbubbles.repl.co/?enlem=37.7&boylam=30.5)
 
 [Thunderclient test sonucu]()
 
