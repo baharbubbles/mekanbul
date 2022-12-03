@@ -1,6 +1,6 @@
 [Replit Adresi]()
 
-![](https://github.com/baharbubbles/mekanbul/blob/odev6/images/replit_adres.png)
+![](https://github.com/baharbubbles/mekanbul/blob/odev7/images/replit_adres.png)
 
 [Thunderclient test sonucu]()
 
