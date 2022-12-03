@@ -1,7 +1,7 @@
 const axios = require("axios");
 var apiSecenekleri = {
-  //sunucu: http://localhost:3000
-  sunucu:"http://mekanbul.baharbubbles.repl.co",
+  sunucu: "http://localhost:3000",
+  // sunucu:"http://mekanbul.baharbubbles.repl.co",
   apiYolu:"/api/mekanlar/",
 };
 var mesafeyiFormatla = function(mesafe){
@@ -36,15 +36,15 @@ var anaSayfaOlustur = function(res,mekanListesi){
       slogan:"Civardaki Mekanları Keşfet!",
     },
     mekanlar: mekanListesi,
-    mesaj: mesaj,
+    mesaj: mesaj
   });
 };
-const anaSayfa = function (req, res) {
+const anaSayfa = function (req, res, next) {
   axios.get(apiSecenekleri.sunucu + apiSecenekleri.apiYolu,{
     params: {
       enlem: req.query.enlem,
       boylam: req.query.boylam,
-    },
+    }
   }).then(function(response){
     var i,mekanlar;
     mekanlar = response.data;
