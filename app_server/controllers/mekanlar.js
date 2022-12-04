@@ -1,7 +1,7 @@
 const axios = require("axios");
 var apiSecenekleri = {
-  sunucu: "http://localhost:3000",
-  // sunucu:"http://mekanbul.baharbubbles.repl.co",
+  // sunucu: "http://localhost:3000",
+  sunucu:"http://mekanbul.baharbubbles.repl.co",
   apiYolu:"/api/mekanlar/",
 };
 var mesafeyiFormatla = function(mesafe){
@@ -20,7 +20,8 @@ var router = express.Router();
 var anaSayfaOlustur = function(res,mekanListesi){
   var mesaj;
   //gelen mekanListesi eğer dizi tipinde değilse hata ver
-  if(!(mekanListesi instanceof Array)){
+  console.log(mekanListesi)
+  if(!(Array.isArray(mekanListesi))){
     mesaj ="API HATASI: Bir şeyler ters gitti.";
     mekanListesi =[];
   }else{
@@ -42,8 +43,8 @@ var anaSayfaOlustur = function(res,mekanListesi){
 const anaSayfa = function (req, res, next) {
   axios.get(apiSecenekleri.sunucu + apiSecenekleri.apiYolu,{
     params: {
-      enlem: req.query.enlem,
-      boylam: req.query.boylam,
+      enlem: req.query.enlem ? req.query.enlem:37,
+      boylam: req.query.boylam ? req.query.boylam:30.5,
     }
   }).then(function(response){
     var i,mekanlar;
@@ -63,7 +64,7 @@ var detaySayfasiOlustur = function(res,mekanDetaylari){
     "boylam":mekanDetaylari.koordinat[1]
   }
   res.render('mekanbilgisi',{
-    mekanBilgisi: mekanDetaylari.ad,
+    mekanBaslik: mekanDetaylari.ad,
     mekanDetay: mekanDetaylari
   });
 }
