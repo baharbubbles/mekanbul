@@ -93,12 +93,12 @@ const mekanBilgisi = function (req, res) {
     });
 };
 
-const yorumEkle = function (req, res, next) {
+const yorumEkle = function (req, res) {
   var mekanAdi = req.session.mekanAdi;
   mekanid = req.params.mekanid;
   if(!mekanAdi)
-  res.redirect("/mekan"+ mekanid);
-  else res.render("yorumEkle",{
+  res.redirect("/mekan/"+ mekanid);
+  else res.render("yorumekle",{
     baslik: mekanAdi + "mekanına yorum ekle"
   });
 };
