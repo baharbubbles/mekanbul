@@ -127,7 +127,7 @@ const yorumumuEkle = function (req, res,){
 };
 var yorumSema = new mongoose.Schema({
   yorumYapan: {type:String, required:true},
-  puan: {type:Number, default:0, min:0, max},
+  puan: {type:Number, default:0, min:0, max:5},
   yorumMetni: {type:String, required:true},
   tarih: {type:Date, default:Date.now},
 });
