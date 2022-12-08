@@ -106,7 +106,7 @@ const yorumumuEkle = function (req, res,){
   var gonderilenYorum, mekanid;
   mekanid = req.params.mekanid;
   if(!req.body.adsoyad || !req.body.yorum){
-    res.redirect("/mekan" +mekanid+ "/yorum/yeni?hata=evet");
+    res.redirect("/mekan/" +mekanid+ "/yorum/yeni?hata=evet");
   }else{
     gonderilenYorum = {
       yorumYapan: req.body.adsoyad,
@@ -118,7 +118,7 @@ const yorumumuEkle = function (req, res,){
         apiSecenekleri.sunucu + apiSecenekleri.apiYolu + mekanid + "/yorumlar", gonderilenYorum
       )
       .then(function(){
-        res.redirect("/mekan"+ mekanid);
+        res.redirect("/mekan/"+ mekanid);
       })
       .catch(function(hata){
         hataGoster(req,res,hata);
