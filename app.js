@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -8,7 +9,11 @@ var indexRouter = require("./app_server/routes/index");
 var usersRouter = require("./app_server/routes/users");
 var apiRouter = require("./app_api/routes/index"); 
 var session = require('express-session');
+const passport = require("passport");
+const { initialize } = require('passport');
+require("./app_api/config/passport");
 var app = express();
+app.use(passport,initialize());
 app.use(session({
   secret:"gizli",
   cookie:{maxAge: 1000 * 60 * 60 * 24},
@@ -18,6 +23,15 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api", apiRouter);
+
+app.use("./api", (req, res, next) => {
+  res.header("Acces-Control-Allow-Orijin", "http://localhost:3000");
+  res.header(
+    "Acces-Control-Allow-Headers",
+    "Orijin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  next();
+});
 
 
 

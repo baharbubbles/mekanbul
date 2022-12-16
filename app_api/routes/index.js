@@ -3,6 +3,10 @@ var router = express.Router();
 var ctrlMekanlar = require("../controllers/mekanlar");
 var ctrlYorumlar = require("../controllers/yorumlar");
 
+const ctrlDogrulama = require('../controllers/dogrulama');
+router.post('/kayitol', ctrlDogrulama.kayitOl);
+router.post('/girisyap', ctrlDogrulama.girisYap);
+
 //mekanlar için rotalar
 router
 .route('/mekanlar')
